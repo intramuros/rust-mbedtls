@@ -59,8 +59,8 @@ mod private;
 #[cfg(sys_threading_component = "custom")]
 pub mod threading;
 
-cfg_if::cfg_if! {
-    if #[cfg(any(feature = "force_aesni_support", target_env = "sgx"))] {
+// cfg_if::cfg_if! {
+//     if #[cfg(any(feature = "force_aesni_support", target_env = "sgx"))] {
         // needs to be pub for global visibility
         #[doc(hidden)]
         pub use mbedtls_platform_support::mbedtls_aesni_has_support;
@@ -72,8 +72,8 @@ cfg_if::cfg_if! {
         // needs to be pub for global visibility
         #[doc(hidden)]
         pub use mbedtls_platform_support::mbedtls_internal_aes_decrypt;
-    }
-}
+//     }
+// }
 
 #[cfg(test)]
 #[path = "../tests/support/mod.rs"]
