@@ -43,29 +43,31 @@
  */
 int mbedtls_aesni_has_support(unsigned int what)
 {
-    static int done = 0;
-    static unsigned int c = 0;
-
-    if (!done) {
-#if MBEDTLS_AESNI_HAVE_CODE == 2
-        static int info[4] = { 0, 0, 0, 0 };
-#if defined(_MSC_VER)
-        __cpuid(info, 1);
-#else
-        __cpuid(1, info[0], info[1], info[2], info[3]);
-#endif
-        c = info[2];
-#else /* AESNI using asm */
-        asm ("movl  $1, %%eax   \n\t"
-             "cpuid             \n\t"
-             : "=c" (c)
-             :
-             : "eax", "ebx", "edx");
-#endif /* MBEDTLS_AESNI_HAVE_CODE */
-        done = 1;
-    }
-
-    return (c & what) != 0;
+  (void) what;
+  return 1;
+//     static int done = 0;
+//     static unsigned int c = 0;
+//
+//     if (!done) {
+// #if MBEDTLS_AESNI_HAVE_CODE == 2
+//         static int info[4] = { 0, 0, 0, 0 };
+// #if defined(_MSC_VER)
+//         __cpuid(info, 1);
+// #else
+//         __cpuid(1, info[0], info[1], info[2], info[3]);
+// #endif
+//         c = info[2];
+// #else /* AESNI using asm */
+//         asm ("movl  $1, %%eax   \n\t"
+//              "cpuid             \n\t"
+//              : "=c" (c)
+//              :
+//              : "eax", "ebx", "edx");
+// #endif /* MBEDTLS_AESNI_HAVE_CODE */
+//         done = 1;
+//     }
+//
+//     return (c & what) != 0;
 }
 #endif
 
