@@ -1,3 +1,4 @@
+#![allow(unused)]
 /* Copyright (c) Fortanix, Inc.
  *
  * Licensed under the GNU General Public License, version 2 <LICENSE-GPL or
@@ -10,7 +11,7 @@ pub mod ctr_drbg;
 pub mod hmac_drbg;
 #[cfg(sys_std_component = "entropy")]
 pub mod os_entropy;
-#[cfg(any(feature = "rdrand", target_env = "sgx"))]
+// #[cfg(any(feature = "rdrand", target_env = "sgx"))]
 mod rdrand;
 
 #[doc(inline)]
@@ -20,7 +21,7 @@ pub use self::hmac_drbg::HmacDrbg;
 #[cfg(sys_std_component = "entropy")]
 #[doc(inline)]
 pub use self::os_entropy::OsEntropy;
-#[cfg(any(feature = "rdrand", target_env = "sgx"))]
+// #[cfg(any(feature = "rdrand", target_env = "sgx"))]
 pub use self::rdrand::{Entropy as Rdseed, Nrbg as Rdrand};
 
 use crate::error::{IntoResult, Result};
